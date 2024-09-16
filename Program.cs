@@ -1,20 +1,20 @@
 using Microsoft.EntityFrameworkCore;
 using Sprint1_2semestre.Data;
-using Sprint1_2semestre.Services; // Adicionando o ConfigManager
+using Sprint1_2semestre.Services; 
 
 var builder = WebApplication.CreateBuilder(args);
 
-// Configura a string de conexão (use sua string de conexão real aqui)
+
 var connectionString = builder.Configuration.GetConnectionString("DefaultConnection");
 
-// Adiciona o ApplicationDbContext ao contêiner de injeção de dependências
+// Adiciona o ApplicationDbContext ao contÃªiner de injeÃ§Ã£o de dependÃªncias
 builder.Services.AddDbContext<ApplicationDbContext>(options =>
     options.UseOracle(connectionString));  // Certifique-se de ter o pacote Oracle.EntityFrameworkCore instalado
 
-// Adiciona o ConfigManager como Singleton no contêiner de serviços
+// Adiciona o ConfigManager como Singleton no contÃªiner de serviÃ§os
 builder.Services.AddSingleton<ConfigManager>();
 
-// Adiciona serviços de controladores e configura JSON
+// Adiciona serviÃ§os de controladores e configura JSON
 builder.Services.AddControllers()
     .AddJsonOptions(options =>
     {
@@ -22,7 +22,7 @@ builder.Services.AddControllers()
         options.JsonSerializerOptions.WriteIndented = true;
     });
 
-// Configura o CORS para permitir requisições de qualquer origem
+// Configura o CORS para permitir requisiÃ§Ãµes de qualquer origem
 builder.Services.AddCors(options =>
 {
     options.AddPolicy("AllowAll", policy =>
@@ -33,27 +33,27 @@ builder.Services.AddCors(options =>
     });
 });
 
-// Adiciona o Swagger para a documentação da API
+// Adiciona o Swagger para a documentaÃ§Ã£o da API
 builder.Services.AddEndpointsApiExplorer();
 builder.Services.AddSwaggerGen();
 
 var app = builder.Build();
 
-// Configurações de desenvolvimento (Swagger e SwaggerUI)
+// ConfiguraÃ§Ãµes de desenvolvimento (Swagger e SwaggerUI)
 if (app.Environment.IsDevelopment())
 {
     app.UseSwagger();
     app.UseSwaggerUI();
 }
 
-// Habilita o CORS com a política definida
+
 app.UseCors("AllowAll");
 
-// Adiciona middleware para autorização
+
 app.UseAuthorization();
 
-// Mapeia os controladores da API
+
 app.MapControllers();
 
-// Executa a aplicação
+
 app.Run();
