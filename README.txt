@@ -43,6 +43,6 @@ RODAR A API
 
 1.restuarar os pacotes com o comando "dotnet restore" 
 2. executar a aplicação com o comando "dotnet run"
-3. Para acessar via Swagger coloque o link http://localhost:5246/swagger
+3. Para acessar via Swagger coloque o link http://localhost:5246/swagger caso ao executar a aplicação ele mostre outra porta, apenas substitua "5246" pela porta que gerou.
 4. assim podemos testar os endpoints e  a aplicação estará rodando 
 
