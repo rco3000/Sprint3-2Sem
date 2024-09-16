@@ -17,7 +17,7 @@ namespace Sprint1_2semestre.Data
 
             var builder = new DbContextOptionsBuilder<ApplicationDbContext>();
 
-            // Configurar a string de conexão para o Oracle
+            
             var connectionString = configuration.GetConnectionString("DefaultConnection");
 
             builder.UseOracle(connectionString);
