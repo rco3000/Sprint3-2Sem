@@ -45,4 +45,5 @@ RODAR A API
 2. executar a aplicação com o comando "dotnet run"
 3. Para acessar via Swagger coloque o link http://localhost:5246/swagger caso ao executar a aplicação ele mostre outra porta, apenas substitua "5246" pela porta que gerou.
 4. assim podemos testar os endpoints e  a aplicação estará rodando 
+5. ao testar os endpoints atente-se de que o cnpj deve conter 14 caracteres e a senha no minimo 6
 
