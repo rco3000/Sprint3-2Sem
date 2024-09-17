@@ -1,7 +1,7 @@
 # Docs for the Azure Web Apps Deploy action: https://github.com/Azure/webapps-deploy
 # More GitHub Actions for Azure: https://github.com/Azure/actions
 
-name: Build and deploy ASP.Net Core app to Azure Web App - Sprint1-2semestre
+name: Build and deploy ASP.Net Core app to Azure Web App - teste-appweb
 
 on:
   push:
@@ -19,7 +19,7 @@ jobs:
       - name: Set up .NET Core
         uses: actions/setup-dotnet@v4
         with:
-          dotnet-version: '3.1'
+          dotnet-version: '6.0.x'
 
       - name: Build with dotnet
         run: dotnet build --configuration Release
@@ -37,7 +37,7 @@ jobs:
     runs-on: windows-latest
     needs: build
     environment:
-      name: 'Production'
+      name: 'production'
       url: ${{ steps.deploy-to-webapp.outputs.webapp-url }}
     permissions:
       id-token: write #This is required for requesting the JWT
@@ -51,15 +51,15 @@ jobs:
       - name: Login to Azure
         uses: azure/login@v2
         with:
-          client-id: ${{ secrets.AZUREAPPSERVICE_CLIENTID_2747E3023220430BB6489A06FDAB6607 }}
-          tenant-id: ${{ secrets.AZUREAPPSERVICE_TENANTID_C34064B6C973455CABE4959DE392E998 }}
-          subscription-id: ${{ secrets.AZUREAPPSERVICE_SUBSCRIPTIONID_392263EB2B14474D9D16C74D8E50D558 }}
+          client-id: ${{ secrets.__clientidsecretname__ }}
+          tenant-id: ${{ secrets.__tenantidsecretname__ }}
+          subscription-id: ${{ secrets.__subscriptionidsecretname__ }}
 
       - name: Deploy to Azure Web App
         id: deploy-to-webapp
         uses: azure/webapps-deploy@v3
         with:
-          app-name: 'Sprint1-2semestre'
-          slot-name: 'Production'
+          app-name: 'teste-appweb'
+          slot-name: 'production'
           package: .
           
